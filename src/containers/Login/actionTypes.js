@@ -1,0 +1,5 @@
+export const LOGIN = 'user/login'
+export const LOGIN_REQUEST = 'user/login/request'
+export const LOGIN_SUCCESS = 'user/login/success'
+export const LOGIN_FAIL = 'user/login/fail'
+export const CREDENTIALS_CHANGE = 'user/login/credentials/change'

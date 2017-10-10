@@ -4,8 +4,6 @@ import { StackNavigator } from 'react-navigation'
 
 import { Login, HomeScreen } from './containers'
 
-console.log(Login, HomeScreen)
-
 const Screens = StackNavigator({
   Login: { screen: Login },
   HomeScreen: { screen: HomeScreen },

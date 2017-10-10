@@ -1,5 +1,9 @@
 import React, { PureComponent } from 'react'
 import { View, Text, StyleSheet, TextInput } from 'react-native'
+import { connect } from 'react-redux'
+
+import { selectCredentials } from './selectors'
+import { changeCredentials, loginUser } from './actions'
 import { Input } from './components'
 import { Button } from '../../components'
 
@@ -8,17 +12,26 @@ const blue = '#CDC6E8'
 
 class Login extends PureComponent {
 
+  static navigationOptions = {
+    header: null
+  }
+
   _next = () => this.passwordInput && this.passwordInput.focus()
 
-  _onSubmitHandler = () => this.props.navigation.navigate('HomeScreen')  
+  _onSubmitHandler = () => {
+    console.log('_onSubmitHandler')
+    this.props.onSubmit()
+    // this.props.navigation.navigate('HomeScreen')
+  }  
 
   render() {
-    const { navigation } = this.props
+    const { navigation, login, onChange } = this.props
 
     return (
       <View style={s.container}>
         <Text style={s.title}>Sign in</Text>
         <TextInput
+          value={login.email}
           keyboardType='email-address'
           style={s.input} 
           placeholderTextColor={blue}
@@ -28,6 +41,7 @@ class Login extends PureComponent {
           autoCorrect={false}
           autoFocus={true}
           autoCapitalize='none'
+          onChangeText={email => onChange({ email })}
           placeholder='email@mail.com' />
         <TextInput 
           secureTextEntry={true}
@@ -36,16 +50,13 @@ class Login extends PureComponent {
           underlineColorAndroid={blue}
           placeholderTextColor={blue}
           onSubmitEditing={this._onSubmitHandler}
+          onChangeText={password => onChange({ password })}
           placeholder='password' />
 
         <Button title='Login' onPress={this._onSubmitHandler} />
       </View>
     )
   }
-}
-
-Login.navigationOptions = {
-  header: null
 }
 
 const s = StyleSheet.create({
@@ -71,4 +82,13 @@ const s = StyleSheet.create({
   }
 })
 
-export default Login
+const mapStateToProps = state => ({
+  login: selectCredentials(state)
+})
+
+const mapDispatchToProps = dispatch => ({
+  onChange: (val) => dispatch(changeCredentials(val)),
+  onSubmit: () => dispatch(loginUser())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

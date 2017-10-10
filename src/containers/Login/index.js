@@ -20,8 +20,9 @@ class Login extends PureComponent {
 
   _onSubmitHandler = () => {
     console.log('_onSubmitHandler')
-    this.props.onSubmit()
+    // this.props.onSubmit()
     // this.props.navigation.navigate('HomeScreen')
+    this.props.dispatch({ type: 'user/login/success' })
   }  
 
   render() {
@@ -53,7 +54,7 @@ class Login extends PureComponent {
           onChangeText={password => onChange({ password })}
           placeholder='password' />
 
-        <Button title='Login' onPress={this._onSubmitHandler} />
+        <Button title='Log In' onPress={this._onSubmitHandler} />
       </View>
     )
   }
@@ -88,7 +89,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   onChange: (val) => dispatch(changeCredentials(val)),
-  onSubmit: () => dispatch(loginUser())
+  onSubmit: () => dispatch(loginUser()),
+  dispatch
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

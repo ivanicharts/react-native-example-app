@@ -8,14 +8,13 @@ const defaultState = {
 function loginReducer (state = defaultState, { type, ...action }) {
   switch(type) {
   case t.CREDENTIALS_CHANGE:
-    console.log(state)
     return { ...state, ...action.data }
   case t.LOGIN_REQUEST:
     return { ...state, fetching: true }    
   case t.LOGIN_SUCCESS:
-    return { ...state, data: action.data, fetching: false }
+    return { ...state, isLoggedIn: true, data: action.data, fetching: false }
   case t.LOGIN_FAIL:
-    return { ...state, fetching: false, error: action.error }
+    return { ...state, isLoggedIn: false, fetching: false, error: action.error }
   default:
     return state
   }

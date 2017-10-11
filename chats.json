@@ -1,0 +1,65 @@
+{
+  "chats": [
+    {
+      "name": "Bruce Wayne",
+      "message": "Hey, how it's going ?",
+      "time": "11:21",
+      "avatar": "https://cdn.dribbble.com/users/40016/screenshots/1358207/bats_1x.png",
+      "isOnline": true
+    },{
+      "name": "Joker?!",
+      "message": "Why so serious !?",
+      "time": "11:21",
+      "avatar": "https://cdn.dribbble.com/users/59100/screenshots/2053654/joke_1x.png"
+    },{
+      "name": "Dark Knight",
+      "message": "I'm the night!",
+      "time": "11:21",
+      "avatar": "https://cdn.dribbble.com/users/113209/screenshots/465033/thebatman.jpg"
+    },{
+      "name": "Future Batman",
+      "message": "I'm vengecne I'm vengecne I'm vengecne I'm vengecne",
+      "time": "11:21"
+    },{
+      "name": "Bruce Wayne",
+      "message": "Hey, how it's going ?",
+      "time": "11:21",
+      "avatar": "https://cdn.dribbble.com/users/40016/screenshots/1358207/bats_1x.png",
+      "isOnline": true
+      
+    },{
+      "name": "Joker?!",
+      "message": "Why so serious !?",
+      "time": "11:21",
+      "avatar": "https://cdn.dribbble.com/users/59100/screenshots/2053654/joke_1x.png"
+    },{
+      "name": "Dark Knight",
+      "message": "I'm the night!",
+      "time": "11:21",
+      "avatar": "https://cdn.dribbble.com/users/113209/screenshots/465033/thebatman.jpg"
+    },{
+      "name": "Future Batman",
+      "message": "I'm vengecne I'm vengecne I'm vengecne I'm vengecne",
+      "time": "11:21"
+    },{
+      "name": "Bruce Wayne",
+      "message": "Hey, how it's going ?",
+      "time": "11:21",
+      "avatar": "https://cdn.dribbble.com/users/40016/screenshots/1358207/bats_1x.png"
+    },{
+      "name": "Joker?!",
+      "message": "Why so serious !?",
+      "time": "11:21",
+      "avatar": "https://cdn.dribbble.com/users/59100/screenshots/2053654/joke_1x.png"
+    },{
+      "name": "Dark Knight",
+      "message": "I'm the night!",
+      "time": "11:21",
+      "avatar": "https://cdn.dribbble.com/users/113209/screenshots/465033/thebatman.jpg"
+    },{
+      "name": "Future Batman",
+      "message": "I'm vengecne I'm vengecne I'm vengecne I'm vengecne",
+      "time": "11:21"
+    }
+  ]
+}

@@ -1,45 +1,67 @@
 import React, { PureComponent } from 'react'
-import { View, Text, StyleSheet } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, ActivityIndicator, FlatList } from 'react-native'
+
+import { themeColor } from '../../utils/constants'
+import { chats } from '../../../chats.json'
+import { ChatItem } from './components'
 
 const s = StyleSheet.create({
   header: {
-    backgroundColor: '#3A3748'
+    backgroundColor: themeColor,
+    height: 60
   },
   title: {
     color: 'white',
-    fontWeight: '300'
+    fontWeight: '300',
+    alignSelf: 'center'
   },
   container: {
     backgroundColor: 'white',
     flex: 1,
     alignItems: 'center'
   },
-  search: {
-    height: 40,
+  newChat: {
+    height: 50,
     width: '100%',
-    backgroundColor: '#f2f2f2',
+    backgroundColor: '#8F80FB',
     alignItems: 'center',
     justifyContent: 'center',
-    marginBottom: 10
+  },
+  newChatColor: {
+    color: 'white',
+    fontSize: 16
+  },
+  listContainer: {
+    width: '100%'
   }
 })
 
 class HomeScreen extends PureComponent {
   static navigationOptions = {
-    title: 'Chat list',
+    title: 'CHAT',
     headerStyle: s.header,
     headerTitleStyle: s.title
   }
 
+  _keyExtractor = (item, idx) => idx
+  _renderChatItem = ({ item }) => (<ChatItem { ...item } />)
+
   render = () => (
     <View style={s.container}>
-      <View style={s.search}>
-        <Text>Search</Text>
+      <StatusBar backgroundColor={themeColor} />
+      <View style={s.newChat}>
+        <Text style={s.newChatColor} >New message</Text>
       </View>
-      <Text>Home screen</Text>
+      <FlatList 
+        style={s.listContainer}
+        data={chats}
+        keyExtractor={this._keyExtractor}
+        renderItem={this._renderChatItem}
+      />
     </View>
   )
 }
+
 
 
 export default HomeScreen

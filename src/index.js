@@ -12,7 +12,8 @@ const Screens = StackNavigator({
 })
 
 const App = ({ isLoggedIn }) => (
-  isLoggedIn ? <Screens /> : <Login />
+  // isLoggedIn ? <Screens /> : <Login />
+  <Screens />
 )
 
 const mapStateToProps = state => ({

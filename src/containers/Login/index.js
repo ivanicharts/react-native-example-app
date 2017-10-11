@@ -6,9 +6,7 @@ import { selectCredentials } from './selectors'
 import { changeCredentials, loginUser } from './actions'
 import { Input } from './components'
 import { Button } from '../../components'
-
-const blue = '#CDC6E8'
-
+import { themeColor, blue } from '../../utils/constants'
 
 class Login extends PureComponent {
 

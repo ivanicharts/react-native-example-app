@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react'
 import { View, Text, StyleSheet, StatusBar, ActivityIndicator, FlatList } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import Touchable from 'react-native-platform-touchable'
+import ImagePicker from 'react-native-image-picker'
 
 import { themeColor, lightGray, gray, violet } from '../../utils/constants'
 import { messages } from '../../../chats.json'
@@ -53,20 +54,34 @@ class ChatScreen extends PureComponent {
   }
 
   _onChangeText = text => this.setState({ text })
-  _onSubmit = () => (messages.push({ time: '10:43', me: true, content: this.state.text }),this.setState({ text: '' }))
+  
+  _onSubmit = () => (
+    this.setState(
+      prev => ({ text: '', messages: [ { time: '10:43', me: true, content: this.state.text }, ...prev.messages ] })
+    )
+  )
   _keyExtractor = (item, idx) => idx
   _renderMessage = ({ item }) => (<Message { ...item } />)
+  _onImageSelect = () => ImagePicker.showImagePicker(options, this._onImageGet)
+  
+  _onImageGet = response => response.uri && this.setState(
+    prev => ({ messages: [ { uri: `data:image/jpeg;base64,${response.data}`, me: true, time: '12:12' }, ...prev.messages ]})
+  )
 
   render = () => (
     <View onPress={this._onPress} style={s.container}>
       <FlatList
+        inverted
+        ref={ref => this.list = ref}
         style={s.messagesContainer}
         data={this.state.messages}
         renderItem={this._renderMessage}
         keyExtractor={this._keyExtractor}
       />
       <View style={s.textArea}>
-        <Icon name='add-a-photo' size={30} color={violet} />
+        <Touchable onPress={this._onImageSelect}>
+          <Icon name='add-a-photo' size={30} color={violet} />
+        </Touchable>
         <TextArea 
           onChangeText={this._onChangeText}
           value={this.state.text}
@@ -79,6 +94,8 @@ class ChatScreen extends PureComponent {
   )
 }
 
-
+const options = {
+  title: 'Select Image'
+}
 
 export default ChatScreen

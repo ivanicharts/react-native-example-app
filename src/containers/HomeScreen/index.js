@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { View, Text, StyleSheet, StatusBar, ActivityIndicator, FlatList } from 'react-native'
 
-import { themeColor } from '../../utils/constants'
+import { themeColor, darkerThemeColor, violet, riverBlue } from '../../utils/constants'
 import { chats } from '../../../chats.json'
 import { ChatItem } from './components'
 
@@ -23,7 +23,7 @@ const s = StyleSheet.create({
   newChat: {
     height: 50,
     width: '100%',
-    backgroundColor: '#8F80FB',
+    backgroundColor: violet,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -44,11 +44,12 @@ class HomeScreen extends PureComponent {
   }
 
   _keyExtractor = (item, idx) => idx
-  _renderChatItem = ({ item }) => (<ChatItem { ...item } />)
+  _renderChatItem = ({ item }) => (<ChatItem { ...item } onPress={this._onPress(item)} />)
+  _onPress = user => () => this.props.navigation.navigate('ChatScreen', { user })
 
   render = () => (
-    <View style={s.container}>
-      <StatusBar backgroundColor={themeColor} />
+    <View onPress={this._onPress} style={s.container}>
+      <StatusBar backgroundColor={darkerThemeColor} />
       <View style={s.newChat}>
         <Text style={s.newChatColor} >New message</Text>
       </View>

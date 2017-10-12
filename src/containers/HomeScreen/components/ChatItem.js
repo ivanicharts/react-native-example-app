@@ -1,33 +1,36 @@
 import React from 'react'
+import Touchable from 'react-native-platform-touchable'
 
 import { Text, View, StyleSheet, Image } from 'react-native'
 import { OnlineCircle } from './'
 import { gray } from '../../../utils/constants'
 
-const ChatItem = ({ name, message, avatar, isOnline, time }) => (
-  <View style={s.container}>
-    <View style={s.row}>
-      <Image 
-        source={{uri: avatar || 'https://cdn.dribbble.com/users/59100/screenshots/2684072/arkhamknigth_1x.jpg'}}
-        style={s.avatar}
-      />
-    </View>
-    <View style={s.infoWrapper}>
-      <View style={s.nameWrapper}>
-        <View style={s.rowName}>
-          <Text style={s.name}>{ name }</Text>
-          <OnlineCircle isOnline={ isOnline } />
-        </View>
-        <Text style={s.time}>{ time }</Text>
+const ChatItem = ({ name, message, avatar, isOnline, time, onPress }) => (
+  <Touchable onPress={onPress}>
+    <View style={s.container}>
+      <View style={s.row}>
+        <Image 
+          source={{uri: avatar || 'https://cdn.dribbble.com/users/59100/screenshots/2684072/arkhamknigth_1x.jpg'}}
+          style={s.avatar}
+        />
       </View>
-      <Text
-        style={s.message}
-        ellipsizeMode='tail'
-        numberOfLines={1}>
-        { message }
-      </Text>
+      <View style={s.infoWrapper}>
+        <View style={s.nameWrapper}>
+          <View style={s.rowName}>
+            <Text style={s.name}>{ name }</Text>
+            <OnlineCircle isOnline={ isOnline } />
+          </View>
+          <Text style={s.time}>{ time }</Text>
+        </View>
+        <Text
+          style={s.message}
+          ellipsizeMode='tail'
+          numberOfLines={1}>
+          { message }
+        </Text>
+      </View>
     </View>
-  </View>
+  </Touchable>
 )
 
 

@@ -4,11 +4,14 @@ import { StackNavigator } from 'react-navigation'
 import { connect } from 'react-redux'
 
 import { selectLogin } from './containers/Login/selectors'
-import { Login, HomeScreen } from './containers'
+import { Login, HomeScreen, ChatScreen } from './containers'
 
 const Screens = StackNavigator({
   // Login: { screen: Login },
+  ChatScreen: { screen: ChatScreen },
   HomeScreen: { screen: HomeScreen },
+}, {
+  initialRouteName: 'HomeScreen'
 })
 
 const App = ({ isLoggedIn }) => (

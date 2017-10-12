@@ -6,6 +6,8 @@ import App from './src'
 
 const store = configureStore()
 
+console.ignoredYellowBox = ['Remote debugger']
+
 export default () => (
   <Provider store={store}>
     <App />

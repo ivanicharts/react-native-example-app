@@ -1,4 +1,49 @@
 {
+  "messages": [
+    {
+      "my": true,
+      "content": "Hello there",
+      "time": "11:19"
+    },{
+      "my": true,
+      "content": "How are there ?",
+      "time": "11:19"
+    },{
+      "my": false,
+      "content": " Is that so? What have I done lately other than cooperate? I bowed down to you, brother, to make up for daggering you, for the greater good of our plan to reclaim our home. Looked the other way, sister, while you repeat the same cycle with Marcel, falling again for a man you shouldn't be with, while he controls the empire that we built that he took. Now, I make no excuses for past sins but in the one moment when you two could have chosen to stand by me, to believe in me... and believe my intentions for my own child were pure, you chose to stand against me to side with my enemies. I wanted our home back. Now I have it. So, I'm going to live there, and the two of you, you can stay here together... and rot. ",
+      "time": "11:20"
+    },{
+      "my": false,
+      "content": "Good",
+      "time": "11:20"
+      
+    },{
+      "my": true,
+      "content": "I'm batman",
+      "time": "11:21"
+    },{
+      "my": true,
+      "content": "Hello there",
+      "time": "11:19"
+    },{
+      "my": true,
+      "content": "How are there ?",
+      "time": "11:19"
+    },{
+      "my": false,
+      "content": " Is that so? What have I done lately other than cooperate? I bowed down to you, brother, to make up for daggering you, for the greater good of our plan to reclaim our home. Looked the other way, sister, while you repeat the same cycle with Marcel, falling again for a man you shouldn't be with, while he controls the empire that we built that he took. Now, I make no excuses for past sins but in the one moment when you two could have chosen to stand by me, to believe in me... and believe my intentions for my own child were pure, you chose to stand against me to side with my enemies. I wanted our home back. Now I have it. So, I'm going to live there, and the two of you, you can stay here together... and rot. ",
+      "time": "11:20"
+    },{
+      "my": false,
+      "content": "Good",
+      "time": "11:20"
+      
+    },{
+      "my": true,
+      "content": "I'm batman",
+      "time": "11:21"
+    }
+  ],
   "chats": [
     {
       "name": "Bruce Wayne",

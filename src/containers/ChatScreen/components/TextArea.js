@@ -14,6 +14,7 @@ const TextArea = ({ onChangeText, value }) => (
     value={value}
     onChangeText={onChangeText}
     underlineColorAndroid='transparent'
+    maxHeight={100}
   />
 )
 
@@ -21,7 +22,7 @@ const TextArea = ({ onChangeText, value }) => (
 const s = StyleSheet.create({
   textArea: {
     backgroundColor: 'white',
-    maxHeight: 100,
+    // maxHeight: 100,
     flex: 1,
     paddingHorizontal: 10
     // flexDirection: 'row',

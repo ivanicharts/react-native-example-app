@@ -11,7 +11,7 @@ class AutoExpandingTextInput extends PureComponent {
       {...this.props}
       multiline
       blurOnSubmit={false}
-      style={[this.props.style, { height: Math.max(50, this.state.height) }]}
+      style={[this.props.style, { height: Math.min(this.props.maxHeight, Math.max(50, this.state.height)) }]}
       onContentSizeChange={this._onContentSizeChange}
     />
   )

@@ -2,11 +2,11 @@ import React, { PureComponent } from 'react'
 import { View, Text, StyleSheet, TextInput } from 'react-native'
 import { connect } from 'react-redux'
 
-import { selectCredentials } from './selectors'
+import { selectCredentials, selectField } from './selectors'
 import { changeCredentials, loginUser } from './actions'
 import { Input } from './components'
 import { Button } from '../../components'
-import { themeColor, blue } from '../../utils/constants'
+import { themeColor, blue, red } from '../../utils/constants'
 
 class Login extends PureComponent {
 
@@ -18,14 +18,14 @@ class Login extends PureComponent {
 
   _onSubmitHandler = () => {
     console.log('_onSubmitHandler')
-    // this.props.onSubmit()
+    this.props.onSubmit()
     // this.props.navigation.navigate('HomeScreen')
-    this.props.dispatch({ type: 'user/login/success' })
+    // this.props.dispatch({ type: 'user/login/success' })
   }  
 
   render() {
-    const { navigation, login, onChange } = this.props
-
+    const { navigation, login, onChange, error } = this.props
+    console.log('login', login, error, login.email)
     return (
       <View style={s.container}>
         <Text style={s.title}>Sign in</Text>
@@ -52,6 +52,8 @@ class Login extends PureComponent {
           onChangeText={password => onChange({ password })}
           placeholder='password' />
 
+        { error && <Text style={s.err}>{error}</Text>}
+
         <Button title='Log In' onPress={this._onSubmitHandler} />
       </View>
     )
@@ -64,6 +66,9 @@ const s = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  err: {
+    color: red
   },
   title: {
     color: blue,
@@ -82,7 +87,8 @@ const s = StyleSheet.create({
 })
 
 const mapStateToProps = state => ({
-  login: selectCredentials(state)
+  login: selectCredentials(state),
+  error: selectField('error')(state)
 })
 
 const mapDispatchToProps = dispatch => ({

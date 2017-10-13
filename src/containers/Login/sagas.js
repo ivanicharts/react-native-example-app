@@ -1,40 +1,45 @@
-import { call, select, takeLatest, takeEvery } from 'redux-saga/effects'
+import { call, select, takeLatest, takeEvery, put } from 'redux-saga/effects'
+import { get } from 'redux-saga/utils'
 
 import { selectCredentials, selectField } from './selectors'
 import * as a from './actions'
-import api from '../../services/api'
+import { api } from '../../services/api'
 import * as t from './actionTypes'
-
-// function* changeCredentials (field) {
-//   const value = select(selectField(field))
-
-//   try {
-//     yield put(a.changeCredentials({ field, value }))
-//   } catch (e) {
-//     console.log('ERROR CHANGE C', e)
-//   }
-// }
-
-// function* watchChangeCredentials () {
-//   yield takeLatest(t.CREDENTIALS_CHANGE_EVENT, changeCredentials)
-// }
+import Storage from '../../services/storage'
 
 function* loginUser () {
-  console.log('Login attempt')
-  const data = select(selectCredentials())
-  const url = 'https://api.qa.taxifine.md/admin/login'
+  const url = 'api/users/login'
   
+  console.log('Login user')
+
   try {
-    console.log('Login attempt')
-    const response = yield call(api, url, { params: { ...data } })
-    console.log('Login attempt success', response)
-    yield put(loginSuccess(response))
+    const body = yield select(selectCredentials)
+    const response = yield call(api.post, url, {...body})
+    Storage.setToken(response.data.id)
+    yield put(a.loginSuccess(response.data))
+  } catch ({ response, request }) {
+    yield put(a.loginFail(response && response.data.error && response.data.error.message || 'Something went wrong'))
+  }
+}
+
+function* checkToken () {
+  const url = 'api/users/me'
+  const token = yield Storage.getToken() 
+  console.log('first token', token)
+  if (token === null)
+    return yield put(a.invalidToken())
+
+  try {
+    const response = yield call(api, url)
+    console.log('response', response)
+    yield put(a.loginSuccess(response.data))
   } catch (err) {
-    console.log('ERROR LOGIN', err)
+    console.log(err.request)
+    yield put(a.invalidToken())
   }
 }
 
 export function* watchLoginUser () {
-  console.log('watchLoginUser', t.LOGIN)
-  yield takeEvery(t.LOGIN, loginUser)
+  yield takeLatest(t.LOGIN, loginUser)
+  yield takeLatest(t.CHECK_TOKEN, checkToken)
 }

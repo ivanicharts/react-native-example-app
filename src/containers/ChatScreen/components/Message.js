@@ -25,7 +25,7 @@ const s = StyleSheet.create({
   container: {
     width: '100%',
     flexDirection: 'row',
-    marginBottom: 5,
+    margin: 3,
     maxWidth: '95%'
   },
   reverse: {

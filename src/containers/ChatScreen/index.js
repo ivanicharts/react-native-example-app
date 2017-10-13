@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react'
-import { View, Text, StyleSheet, StatusBar, ActivityIndicator, FlatList } from 'react-native'
+import { View, Text, StyleSheet, StatusBar, ActivityIndicator, FlatList, KeyboardAvoidingView } from 'react-native'
 import Icon from 'react-native-vector-icons/MaterialIcons'
 import Touchable from 'react-native-platform-touchable'
 import ImagePicker from 'react-native-image-picker'
@@ -25,7 +25,7 @@ const s = StyleSheet.create({
   },
   messagesContainer: {
     width: '100%',
-    paddingHorizontal: 20
+    paddingHorizontal: 20,
   },
   textArea: {
     backgroundColor: 'white',

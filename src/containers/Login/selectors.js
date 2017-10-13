@@ -1,10 +1,11 @@
 import { createSelector } from 'reselect'
 
 export const selectLogin = state => state.login
+// export const selectLoginError = state => state.login.error
 
-export const selectCredentials = () => createSelector(
+export const selectCredentials = createSelector(
   selectLogin,
-  ({ email, password }) => (console.log('email, passowrd', email, passowrd), ({ email, passowrd }))
+  ({ email, password }) => (console.log('email, passowrd', email, password), ({ email, password }))
 )
 export const selectField = (field) => createSelector(
   selectLogin,

@@ -5,7 +5,7 @@ export const selectLogin = state => state.login
 
 export const selectCredentials = createSelector(
   selectLogin,
-  ({ email, password }) => (console.log('email, passowrd', email, password), ({ email, password }))
+  ({ email, password }) => (({ email, password }))
 )
 export const selectField = (field) => createSelector(
   selectLogin,

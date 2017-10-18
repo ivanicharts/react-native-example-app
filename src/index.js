@@ -1,20 +1,32 @@
 import React, { PureComponent } from 'react'
 import { View, Text } from 'react-native'
-import { StackNavigator } from 'react-navigation'
+import { StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation'
 import { connect } from 'react-redux'
 
 import { selectLogin } from './containers/Login/selectors'
-import { Login, HomeScreen, ChatScreen } from './containers'
+import { Login, HomeScreen, ChatScreen, Logout } from './containers'
 import { LoadingScreen } from './components'
 import { checkToken } from './containers/Login/actions'
 import Storage from './services/storage'
 import { injectToken } from './services/api'
+import withDrawer from './utils/HOCS/withDrawer'
 
 const Screens = StackNavigator({
   ChatScreen: { screen: ChatScreen },
   HomeScreen: { screen: HomeScreen },
 }, {
+  headerMode: 'screen',
   initialRouteName: 'HomeScreen'
+})
+
+const WithDrawer = DrawerNavigator({
+  Dialogs: { screen: Screens },
+  Logout: { screen: Logout },
+}, {
+  headerMode: 'screen',
+  initialRouteName: 'Dialogs',
+  backBehavior: 'initialRoute',
+  contentComponent: props => <DrawerItems {...props}/>
 })
 
 class App extends PureComponent {
@@ -30,7 +42,7 @@ class App extends PureComponent {
       
     return (
       isLoggedIn === void 0 ? <LoadingScreen /> : isLoggedIn === true ?
-        <Screens /> : <Login />
+        <WithDrawer /> : <Login />
       // <Screens />
     )
   }

@@ -43,7 +43,7 @@ class HomeScreen extends PureComponent {
   static navigationOptions = {
     title: 'CHAT',
     headerStyle: s.header,
-    headerTitleStyle: s.title
+    headerTitleStyle: s.title,
   }
 
   componentDidMount() {
@@ -56,7 +56,10 @@ class HomeScreen extends PureComponent {
 
   _keyExtractor = (item, idx) => idx
   _renderChatItem = ({ item }) => (<ChatItem { ...item } onPress={this._onPress(item)} />)
-  _onPress = user => () => this.props.navigation.navigate('ChatScreen', { user })
+  _onPress = user => () => (
+    this.props.selectDialog(user.data.messages),
+    this.props.navigation.navigate('ChatScreen', { user })
+  )
 
   render = () => (
     <View style={s.container}>
@@ -75,7 +78,8 @@ class HomeScreen extends PureComponent {
 }
 
 const mapDispatchToProps = dispatch => ({
-  getUserDialogs: () => dispatch(a.getUserDialogs())
+  getUserDialogs: () => dispatch(a.getUserDialogs()),
+  selectDialog: messages => dispatch(a.selectDialog(messages))
 })
 
 const mapStateToProps = state => ({
@@ -84,4 +88,4 @@ const mapStateToProps = state => ({
   dialogsAreFetching: sl.makeSelectDialogsState(state)
 })
 
-export default connect(mapStateToProps  , mapDispatchToProps)(HomeScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen)

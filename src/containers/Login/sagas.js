@@ -6,6 +6,7 @@ import * as a from './actions'
 import { api } from '../../services/api'
 import * as t from './actionTypes'
 import Storage from '../../services/storage'
+import { injectToken } from '../../services/api'
 
 function* loginUser () {
   const url = 'api/users/login'
@@ -16,6 +17,7 @@ function* loginUser () {
     const body = yield select(selectCredentials)
     const response = yield call(api.post, url, {...body})
     Storage.setToken(response.data.id)
+    injectToken(response.data.id)
     yield put(a.loginSuccess(response.data))
   } catch ({ response, request }) {
     yield put(a.loginFail(response && response.data.error && response.data.error.message || 'Something went wrong'))

@@ -23,6 +23,7 @@ function* getUserDialogs () {
     console.log('data', data)
     const dialogs = data.map(dialog => ({
       data: dialog,
+      messages: dialog.messages ? dialog.messages : [],
       name: dialog.members.filter(m => m.id !== userId)[0].username,
       message: dialog.messages ? dialog.messages[dialog.messages.length - 1].text : '',
       avatar: 'https://cdn.dribbble.com/users/40016/screenshots/1358207/bats_1x.png',

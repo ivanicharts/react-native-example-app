@@ -5,14 +5,14 @@ import { Text, View, StyleSheet, Image } from 'react-native'
 import { OnlineCircle } from './'
 import { gray, darkGray } from '../../../utils/constants'
 
-const Message = ({ my, content, time, uri }) => (
-  <Touchable style={ my ? s.left : s.right }>
-    <View style={[s.container, !my && s.reverse]}>
+const Message = ({ my, text, time, uri }) => (
+  <Touchable style={ my ? s.right : s.left }>
+    <View style={[s.container, my && s.reverse]}>
       <View style={s.messageWrapper}>
         {
           uri ? 
           <Image style={s.img} source={{ uri }} /> :
-          <Text>{content}</Text>
+          <Text>{text}</Text>
         }
       </View>
       <Text style={s.time}>{time}</Text>

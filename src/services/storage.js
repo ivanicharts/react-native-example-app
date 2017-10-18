@@ -6,7 +6,8 @@ const Storage = {
   get: AsyncStorage.getItem,
   set: AsyncStorage.setItem,
   getToken: () => AsyncStorage.getItem(TOKEN_KEY),
-  setToken: token => AsyncStorage.setItem(TOKEN_KEY, token)
+  setToken: token => AsyncStorage.setItem(TOKEN_KEY, token),
+  removeToken: () => AsyncStorage.removeItem(TOKEN_KEY)
 }
 
 export default Storage

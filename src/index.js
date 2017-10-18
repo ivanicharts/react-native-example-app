@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
 import { View, Text } from 'react-native'
-import { StackNavigator, DrawerNavigator, DrawerItems } from 'react-navigation'
+import { StackNavigator, DrawerNavigator, DrawerItems, NavigationActions } from 'react-navigation'
 import { connect } from 'react-redux'
 
 import { selectLogin } from './containers/Login/selectors'
@@ -28,6 +28,17 @@ const WithDrawer = DrawerNavigator({
   backBehavior: 'initialRoute',
   contentComponent: props => <DrawerItems {...props}/>
 })
+
+const navigateOnce = getStateForAction => (action, state) => {
+  const { type, routeName } = action
+  return (
+    state &&
+    type === NavigationActions.NAVIGATE &&
+    routeName === state.routes[state.routes.length - 1].routeName
+  ) ? null : getStateForAction(action, state)
+}
+
+Screens.router.getStateForAction = navigateOnce(Screens.router.getStateForAction)
 
 class App extends PureComponent {
 

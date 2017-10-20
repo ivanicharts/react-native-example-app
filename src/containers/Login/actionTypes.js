@@ -6,3 +6,4 @@ export const CREDENTIALS_CHANGE = 'user/login/credentials/change'
 export const CHECK_TOKEN = 'user/login/check-token'
 export const INVALID_TOKEN = 'user/login/invalid-token'
 export const LOGOUT = 'user/logout'
+

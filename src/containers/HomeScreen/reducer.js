@@ -4,7 +4,8 @@ import { ADD_NEW_MESSAGE, ADD_MESSAGE_SUCCESS } from '../ChatScreen/actionTypes'
 const defaultState = {
   isFetching: true,
   dialogs: [],
-  messages: []
+  messages: [],
+  users: []
 }
 
 function dialogsReducer (state = defaultState, { type, ...action }) {
@@ -19,9 +20,12 @@ function dialogsReducer (state = defaultState, { type, ...action }) {
     return { ...state, messages: action.messages || [] }
   case ADD_NEW_MESSAGE:
     return state
-    // return { ...state, messages: [ ...state.messages, { text: action.message, my: true, created: Date.now() } ] }
   case ADD_MESSAGE_SUCCESS:
     return { ...state, messages: [ ...state.messages, action.message ] }
+  case t.GET_USERS_LIST_SUCCESS:
+    return { ...state, users: action.users || [] }
+  case t.CREATE_DIALOG_SUCCESS:
+    return { ...state, users: state.users.filter(u => u.id !== action.id) }
   default:
     return state
   }

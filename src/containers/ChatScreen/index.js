@@ -12,6 +12,7 @@ import { messages } from '../../../chats.json'
 import { Message, TextArea } from './components'
 import * as a from './actions'
 import { makeSelectMessages } from './selectors'
+import Storage from '../../services/storage'
 
 const s = StyleSheet.create({
   header: {
@@ -58,10 +59,11 @@ class ChatScreen extends PureComponent {
     text: ''
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     console.log('props', this.props)
     const id = this.props.navigation.state.params.user.data.id
-    const url = `${api}api/dialogs/${id}/message-stream?access_token=${'nBXRbFEGG1KddxCfVu9K7yjwrXLY7Cv0uAB1j1w1NqQsGl4CsdceJ51sauF28vL2'}`
+    const token = await Storage.getToken()
+    const url = `${api}api/dialogs/${id}/message-stream?access_token=${token}`
     const src = new EventSource(url)
     console.log('src', src)
     src.addEventListener('data', ({ data }) => this.props.messageSuccess(JSON.parse(data)))
